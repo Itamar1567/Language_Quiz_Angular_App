@@ -1,0 +1,9 @@
+@backend_HostAddress = http://localhost:5154
+
+GET {{backend_HostAddress}}/api/challenge/testai
+Accept: application/json
+
+###
+
+GET {{backend_HostAddress}}/api/authorization/user
+Accept: application/json
