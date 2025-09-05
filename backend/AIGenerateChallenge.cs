@@ -20,12 +20,10 @@ public class AIGenerateChallenge
     }
 
 
-    public async Task<Challenge> GenerateChallenge(string difficulty, string language)
+    public async Task<Challenge> GenerateChallenge(string difficulty, string language, string historyTitles)
     {
 
         ChatClient client = new(model: "gpt-3.5-turbo-0125", credential: new ApiKeyCredential(_openAIKey));
-
-        string historyStr = "";
 
         string systemRole = "You are an expert language challenge creator.";
 
@@ -33,7 +31,7 @@ public class AIGenerateChallenge
         with multiple choice answers. The question should be appropriate for the specified difficulty level. Difficulty = {difficulty} 
         IMPORTANT: Do not repeat any question you have given before. Always create a new, unique challenge with different words and structure.
 
-        PREVIOUSLY ASKED QUESTIONS: {historyStr}
+        PREVIOUSLY ASKED QUESTIONS: {historyTitles}
 
         TARGET LANGUAGE: {language}
 

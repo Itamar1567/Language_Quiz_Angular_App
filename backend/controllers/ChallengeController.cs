@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
@@ -40,7 +41,7 @@ public class ChallengeController : ControllerBase
     [HttpGet("testai")]
     public async Task<IActionResult> TestAi()
     {
-        return Ok(await challengeGenerator.GenerateChallenge("easy", "english"));
+        return Ok(await challengeGenerator.GenerateChallenge("easy", "english", ""));
     }
 
     [HttpGet("user-quota")]
@@ -50,7 +51,7 @@ public class ChallengeController : ControllerBase
 
         if (string.IsNullOrEmpty(user_id))
         {
-            return Unauthorized("Could not find user ID, to fetch quota");
+            return Unauthorized("Could not find user ID, to fetch quota, location: user-quota");
         }
         else
         {
@@ -68,13 +69,17 @@ public class ChallengeController : ControllerBase
 
         if (string.IsNullOrEmpty(user_id))
         {
-            return Unauthorized(new { error = "User ID not found" });
+            return Unauthorized(new { error = "User ID not found: location generate-challenge" });
         }
         else
         {
+             
             List<Challenge> challenges = _db.GetUserChallenges(user_id);
+            var titles = challenges.Select(c => c.Title).ToList();
 
-            Challenge newChallengeData = await challengeGenerator.GenerateChallenge(request.Difficulty, request.Language);
+            string historyStr = titles.Count > 0 ? string.Join("\n", titles) : "none";
+
+            Challenge newChallengeData = await challengeGenerator.GenerateChallenge(request.Difficulty, request.Language, historyStr);
 
             Challenge newChallenge = _db.CreateChallenge(
                 Difficulty: request.Difficulty,
@@ -115,12 +120,11 @@ public class ChallengeController : ControllerBase
 
         if (string.IsNullOrEmpty(user_id))
         {
-            return Unauthorized(new { error = "User ID not found" });
+            return Unauthorized(new { error = "User ID not found, location: get-challenges" });
         }
         else
         {
             List<Challenge> userChallenges = _db.GetUserChallenges(user_id);
-
 
             var challengeResponse = userChallenges.Select(c => new ChallengeResponse
             {
@@ -132,9 +136,24 @@ public class ChallengeController : ControllerBase
                 Language = c.Language ?? "null"
 
             }).ToList();
-
             return Ok(challengeResponse);
         }
 
+    }
+
+    [HttpPost("reset-challenges")]
+    public IActionResult ResetUserChallenges()
+    {
+        var user_id = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+        if (string.IsNullOrEmpty(user_id))
+        {
+            return Unauthorized(new { error = "User ID not found, location: reset-challenges" });
+        }
+        else
+        {
+            _db.ResetUserChallenges(user_id);
+            return GetUserChallenges();
+        }
     }
 }
