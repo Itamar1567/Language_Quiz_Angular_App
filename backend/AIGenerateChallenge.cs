@@ -29,15 +29,17 @@ public class AIGenerateChallenge
 
         string systemRole = "You are an expert language challenge creator.";
 
-        string userMessage = $@"Your task is to generate a language question in {language} 
+        string userMessage = $@"Your task is to generate a language question given the difficulty criteria, and target language,
         with multiple choice answers. The question should be appropriate for the specified difficulty level. Difficulty = {difficulty} 
         IMPORTANT: Do not repeat any question you have given before. Always create a new, unique challenge with different words and structure.
 
         PREVIOUSLY ASKED QUESTIONS: {historyStr}
 
-        For easy questions: Focus on basic words, 3 - 5 word sentences, or common conventions, and ask the question in English.
-        For medium questions: Cover intermediate concepts like sentence structure, 5-9 word sentences, or language features, and ask the question in English.
-        For hard questions: Include advanced words, punctuation, or complex sentences, and ask the question in the given language.
+        TARGET LANGUAGE: {language}
+
+        1.For difficulty easy questions: Focus on basic words, 3 - 5 word sentences, or common conventions, and ask the question in English.
+        2.For difficulty medium questions: Cover intermediate concepts like sentence structure, 5-9 word sentences, or language features, and ask the question in English.
+        3.For difficulty hard questions: Include advanced words, punctuation, or complex sentences, and ask the question in the given language.
 
         Return the challenge in the following JSON structure without any backticks:
         {{
@@ -65,7 +67,6 @@ public class AIGenerateChallenge
 
             if (newChallenge != null)
             {
-                Console.WriteLine(response);
                 return newChallenge;
             }
             else

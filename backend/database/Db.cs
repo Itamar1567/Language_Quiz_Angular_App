@@ -60,6 +60,7 @@ public class DatabaseRepository
 
     public int AddOrRemoveQuota(int num, string Id)
     {
+
         var quota = _dbContext.ChallengeQuotas.FirstOrDefault(q => q.UserId == Id);
 
         if (quota == null)

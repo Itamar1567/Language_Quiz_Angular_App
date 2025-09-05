@@ -95,7 +95,7 @@ public class ChallengeController : ControllerBase
             };
 
             var quota = _db.AddOrRemoveQuota(-1, user_id);
-
+            
             if(quota <= 0)
             {
                 return StatusCode(429, "Quota Exausted");
