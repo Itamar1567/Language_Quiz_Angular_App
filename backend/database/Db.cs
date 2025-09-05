@@ -83,7 +83,7 @@ public class DatabaseRepository
         var quota = _dbContext.ChallengeQuotas.FirstOrDefault(q => q.UserId == Id);
         return quota;
     }
-    public Challenge CreateChallenge(string Difficulty, string createdBy, string title, string[] options, int correctAnswerId, string explanation)
+    public Challenge CreateChallenge(string Difficulty, string createdBy, string title, string[] options, int correctAnswerId, string explanation, string language)
     {
         //new challenge obj
         var newChallenge = new Challenge
@@ -94,6 +94,7 @@ public class DatabaseRepository
             Options = options,
             CorrectAnswerId = correctAnswerId,
             Explanation = explanation,
+            Language = language,
 
         };
 

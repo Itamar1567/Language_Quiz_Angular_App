@@ -17,6 +17,7 @@ public class Challenge
     public int CorrectAnswerId { get; set; }
     [Required]
     public string Explanation { get; set; } = "";
+    public string Language { get; set; } = "";
 }
 
 public class ChallengeQuota

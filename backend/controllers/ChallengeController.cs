@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 public class ChallengeRequest
 {
@@ -56,7 +57,7 @@ public class ChallengeController : ControllerBase
             var userQuota = _db.GetUserQuota(user_id);
             return Ok(new { quotaRemaining = userQuota.QuotaRemaining });
         }
-        
+
     }
 
     [HttpPost("generate-challenge")]
@@ -81,7 +82,9 @@ public class ChallengeController : ControllerBase
                 title: newChallengeData.Title,
                 options: newChallengeData.Options,
                 correctAnswerId: newChallengeData.CorrectAnswerId,
-                explanation: newChallengeData.Explanation
+                explanation: newChallengeData.Explanation,
+                language: request.Language
+
             );
 
             ChallengeResponse newResponse = new ChallengeResponse
@@ -95,13 +98,42 @@ public class ChallengeController : ControllerBase
             };
 
             var quota = _db.AddOrRemoveQuota(-1, user_id);
-            
-            if(quota <= 0)
+
+            if (quota <= 0)
             {
                 return StatusCode(429, "Quota Exausted");
             }
 
             return Ok(newResponse);
+        }
+    }
+
+    [HttpGet("get-challenges")]
+    public IActionResult GetUserChallenges()
+    {
+        var user_id = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+        if (string.IsNullOrEmpty(user_id))
+        {
+            return Unauthorized(new { error = "User ID not found" });
+        }
+        else
+        {
+            List<Challenge> userChallenges = _db.GetUserChallenges(user_id);
+
+
+            var challengeResponse = userChallenges.Select(c => new ChallengeResponse
+            {
+                Difficulty = c.Difficulty ?? "null",
+                title = c.Title ?? "null",
+                Options = c.Options ?? ["null", "null", "null", "null"],
+                CorrectAnswerId = c.CorrectAnswerId,
+                Explanation = c.Explanation ?? "null",
+                Language = c.Language ?? "null"
+
+            }).ToList();
+
+            return Ok(challengeResponse);
         }
 
     }
