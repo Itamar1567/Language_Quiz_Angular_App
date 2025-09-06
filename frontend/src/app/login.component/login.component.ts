@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   private authService: AuthService = inject(AuthService);
   async ngOnInit() {
-    await this.authService.getClerk().load();
+    var clerkService = await this.authService.getClerk();
+    clerkService.load();
 
     this.container.nativeElement.innerHTML = '';
 
@@ -27,7 +29,7 @@ export class LoginComponent implements OnInit {
         signInDiv.className = 'signin-form';
         this.container.nativeElement.appendChild(signInDiv);
 
-        this.authService.getClerk().mountSignIn(signInDiv);
+        clerkService.mountSignIn(signInDiv);
       }
     }
   }

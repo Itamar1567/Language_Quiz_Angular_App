@@ -10,14 +10,14 @@ export class ChallengeService {
 
   backendURL: string = 'http://localhost:5154/api/';
 
-  getSession() {
+  async getSession() {
     try {
-      const session = this.clerkClient.getClerk().session;
-      if (!session) {
+      const clerk = await this.clerkClient.getClerk();
+      if (!clerk.session) {
         console.log('No active session');
         return null;
       } else {
-        return session;
+        return clerk.session;
       }
     } catch (err) {
       console.log('Failed to retieve clerk session: ', err);
@@ -27,7 +27,7 @@ export class ChallengeService {
   async getUserQuota(): Promise<QuotaResponseInterface | null> {
     try {
       {
-        var session = this.getSession();
+        var session = await this.getSession();
         if (session == null) {
           return null;
         } else {
@@ -56,7 +56,7 @@ export class ChallengeService {
     language: string
   ): Promise<ChallengeInterface | null> {
     try {
-      var session = this.getSession();
+      var session = await this.getSession();
       if (session == null) {
         return null;
       } else {
@@ -82,7 +82,7 @@ export class ChallengeService {
 
   async getAllUserChallenges(): Promise<ChallengeInterface[] | null> {
     try {
-      var session = this.getSession();
+      var session = await this.getSession();
       if (session == null) {
         return null;
       } else {
@@ -106,7 +106,7 @@ export class ChallengeService {
   }
   async resetUserChallenges(): Promise<ChallengeInterface[] | null> {
     try {
-      var session = this.getSession();
+      var session = await this.getSession();
         if (session == null) {
           return null;
         } else {

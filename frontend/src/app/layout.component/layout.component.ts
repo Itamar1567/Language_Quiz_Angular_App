@@ -1,10 +1,11 @@
-import { Component, ElementRef, inject, ViewChild, OnInit} from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
+  standalone: true,
   imports: [MatButtonModule],
   template: `
     <section class="layout-container">
@@ -37,7 +38,7 @@ export class LayoutComponent {
   {
     this.router.navigate(["/history"]);
   }
-  ngOnInit() {
+  async ngOnInit() {
 
     if (this.authService.signedInSignalValue() == true) {
 
@@ -47,7 +48,8 @@ export class LayoutComponent {
 
       this.userButtonContainer.nativeElement.innerHTML = '';
 
-      this.authService.getClerk().mountUserButton(this.userButtonContainer.nativeElement);
+      var clerkService = await this.authService.getClerk();
+      clerkService.mountUserButton(this.userButtonContainer.nativeElement);
     }
   }
 }

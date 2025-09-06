@@ -4,44 +4,34 @@ import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  
-  private clerk: Clerk;
+  private clerk: any;
   private signedInSignal = signal(false);
+  private clerkLoaded = false;
 
-  constructor() {
+  constructor() {}
 
+  private async loadClerk(): Promise<void> {
+    if (this.clerkLoaded) return;
+
+    const { Clerk } = await import('@clerk/clerk-js');
     this.clerk = new Clerk(environment.CLERK_PUBLISHABLE_KEY);
-    console.log("Called auth constructor")
-    this.clerk.load().then(() => {
-      this.signedInSignal.set(this.clerk.user != null)
-      console.log(this.signedInSignal());
-      console.log('Clerk loaded. Current user:', this.clerk.user);
-    });
+    await this.clerk.load();
+
+    this.signedInSignal.set(this.clerk.user != null);
+    this.clerkLoaded = true;
   }
 
-  signedIn(): boolean {
-    return this.signedInSignal();
-  }
-
-
-  signedInSignalValue() {
-    
-    return this.signedInSignal();
-  }
-
-  getUser() {
-    return this.clerk.user;
-  }
-  setSignedInSignal(status: boolean)
-  {
-    this.signedInSignal.set(status);
-  }
-  async signOut() {
-    await this.clerk.signOut();
-    console.log('User signed out');
-  }
-  
-  getClerk(): Clerk{
+  // Returns a Promise that resolves to the Clerk instance
+  async getClerk(): Promise<Clerk> {
+    await this.loadClerk();
     return this.clerk;
+  }
+
+  signedInSignalValue(): boolean {
+    return this.signedInSignal();
+  }
+
+  setSignedInSignal(status: boolean) {
+    this.signedInSignal.set(status);
   }
 }
