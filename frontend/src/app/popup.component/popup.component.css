@@ -1,0 +1,19 @@
+.popup-container {
+  position: fixed; /* Stays relative to screen */
+  top: 50%; /* Move to middle vertically */
+  left: 50%; /* Move to middle horizontally */
+  transform: translate(-50%, -50%); /* Center exactly */
+  background: white;
+  border: 2px solid #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.popup-container h3{
+    text-align: center;
+    padding-bottom: 15px;
+}
+.button-header {
+  display: flex;
+  justify-content: space-between;
+}

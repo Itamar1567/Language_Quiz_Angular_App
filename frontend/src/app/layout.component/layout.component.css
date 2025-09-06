@@ -1,0 +1,31 @@
+#logo{
+    padding: 15px;
+    width: auto;
+    height: auto;
+}
+#copyright-text{
+  margin: 0 1rem;
+  font-weight: bold;
+}
+.layout-links {
+  display: flex;           
+  align-items: center;     
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 30px;               
+}
+.layout-links{
+    background-color: #333;
+}
+.layout-links li {
+  display: flex;           
+  align-items: center;     
+}
+.copyright{
+  background-color: #333;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

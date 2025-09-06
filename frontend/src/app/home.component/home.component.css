@@ -1,0 +1,30 @@
+#generate-button {
+  width: auto;
+  padding: 25px 100px;
+  margin: 2rem 0;
+}
+.challenge-container {
+  flex-direction: column;
+  gap: 16px;
+  padding: 50px;
+  border-radius: 2px;
+  margin: 50px auto;
+  max-width: 900px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.quota-display {
+  background-color: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  margin: 2rem 0;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.quota-display p {
+  margin: 0.5rem 0;
+  color: var(--text-color);
+}
+.challenge-container mat-form-field {
+  display: block;
+}

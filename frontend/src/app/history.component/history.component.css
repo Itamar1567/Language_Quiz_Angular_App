@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+.main-container {
+  margin: 2rem 15rem; 
+}
+.history-container{
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+
+}
+.history-header{
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    align-items: center;
+}
+
+.history-challenges-container{
+margin: 2rem 0;
+}
+.history-challenges-container li{
+  
+  margin: 2rem 0;
+  list-style: none;
+}
+.button-holder{
+  gap: 2rem;
+  display: flex;
+}

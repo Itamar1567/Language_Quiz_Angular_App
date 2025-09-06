@@ -1,0 +1,18 @@
+.centered {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* horizontal */
+  align-items: center;
+}
+
+/* only affects the sign-in form */
+.signin-form {
+  width: 100%; /* adjust if needed */
+  max-width: 400px; /* optional */
+}
+
+.user-button {
+  justify-content: center; /* horizontal */
+  align-items: center;
+}
