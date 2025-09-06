@@ -48,7 +48,7 @@ public class DatabaseRepository
             //for fallback
             CreateQuota(Id);
         }
-        else if(now - q.LastResetDate > TimeSpan.FromHours(24))
+        else if (now - q.LastResetDate >= TimeSpan.FromHours(24))
         {
             q.QuotaRemaining = defaultQuota;
             q.LastResetDate = now;
@@ -81,6 +81,13 @@ public class DatabaseRepository
     public ChallengeQuota GetUserQuota(string Id)
     {
         var quota = _dbContext.ChallengeQuotas.FirstOrDefault(q => q.UserId == Id);
+        if (quota == null)
+        {
+            quota = CreateQuota(Id);
+        }
+
+        ResetQuota(Id, quota);
+        
         return quota;
     }
     public Challenge CreateChallenge(string Difficulty, string createdBy, string title, string[] options, int correctAnswerId, string explanation, string language)

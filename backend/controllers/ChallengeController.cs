@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Tracing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -55,8 +56,17 @@ public class ChallengeController : ControllerBase
         }
         else
         {
+            DateTime now = DateTime.Now;
+            TimeSpan resetPeriod = TimeSpan.FromHours(24);
+
             var userQuota = _db.GetUserQuota(user_id);
-            return Ok(new { quotaRemaining = userQuota.QuotaRemaining });
+
+            TimeSpan elapsed = now - userQuota.LastResetDate;
+            TimeSpan remaining = resetPeriod - elapsed;
+
+            
+
+            return Ok(new { quotaRemaining = userQuota.QuotaRemaining, resetCountDown = $" {remaining.Hours}:{remaining.Minutes}:{remaining.Seconds}" });
         }
 
     }
@@ -73,7 +83,7 @@ public class ChallengeController : ControllerBase
         }
         else
         {
-             
+
             List<Challenge> challenges = _db.GetUserChallenges(user_id);
             var titles = challenges.Select(c => c.Title).ToList();
 
