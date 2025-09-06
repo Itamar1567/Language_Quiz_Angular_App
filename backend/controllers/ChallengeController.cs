@@ -56,17 +56,18 @@ public class ChallengeController : ControllerBase
         }
         else
         {
-            DateTime now = DateTime.Now;
             TimeSpan resetPeriod = TimeSpan.FromHours(24);
 
             var userQuota = _db.GetUserQuota(user_id);
 
-            TimeSpan elapsed = now - userQuota.LastResetDate;
-            TimeSpan remaining = resetPeriod - elapsed;
+            //TimeSpan elapsed = now - userQuota.LastResetDate;
+            //TimeSpan remaining = resetPeriod - elapsed;
+
+            var remaining = userQuota.LastResetDate.Add(resetPeriod);
 
             
 
-            return Ok(new { quotaRemaining = userQuota.QuotaRemaining, resetCountDown = $" {remaining.Hours}:{remaining.Minutes}:{remaining.Seconds}" });
+            return Ok(new { quotaRemaining = userQuota.QuotaRemaining, resetCountDown = remaining.ToUniversalTime() });
         }
 
     }

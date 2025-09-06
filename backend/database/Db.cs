@@ -25,9 +25,10 @@ public class DatabaseRepository
 
         };
 
-        var exists = _dbContext.ChallengeQuotas.Any(q => q.UserId == Id);
+        var quotaExists = _dbContext.ChallengeQuotas.FirstOrDefault(q => q.UserId == Id);
 
-        if (exists) return _dbContext.ChallengeQuotas.FirstOrDefault(q => q.UserId == Id);
+        if (quotaExists != null) return quotaExists;
+        
         else
         {
             _dbContext.ChallengeQuotas.Add(newQuota);

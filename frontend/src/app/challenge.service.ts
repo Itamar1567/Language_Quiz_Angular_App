@@ -29,7 +29,7 @@ export class ChallengeService {
         const data: QuotaResponseInterface = await response.json();
 
         console.log('Quota Remaining: ' + data.quotaRemaining);
-        console.log('Quota Remaining: ' + data.resetCountDown);
+        console.log('Countdown Remaining: ' + data.resetCountDown);
         return data;
       }
     } catch (err) {
@@ -37,7 +37,6 @@ export class ChallengeService {
       return null;
     }
   }
-
   async generateChallenge(
     difficulty: string,
     language: string

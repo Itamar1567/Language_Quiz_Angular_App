@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   template: `
     <section class="layout-container">
       <ul class="layout-links">
-        <li><img src="images/favicon.ico" alt="logo" id="logo" /></li>
+        <li><img src="images/language_app_logo.png" alt="logo" id="logo" /></li>
         <li><button mat-raised-button color="primary" extended (click)="moveToHome()">Home</button></li>
         <li><button mat-raised-button="elevated" (click)="moveToHistory()">History</button></li>
         <li #userButtonContainer></li>

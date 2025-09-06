@@ -1,6 +1,6 @@
 export interface QuotaResponseInterface {
 
     quotaRemaining: number;
-    resetCountDown: Date;
+    resetCountDown: string;
 
 }

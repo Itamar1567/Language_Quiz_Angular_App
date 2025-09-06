@@ -2,15 +2,14 @@ import {
   Platform,
   coerceElement,
   coerceNumberProperty
-} from "./chunk-M2KAAOUJ.js";
+} from "./chunk-4KRNYKUY.js";
 import {
   BidiModule
-} from "./chunk-LEYCSVZC.js";
+} from "./chunk-7J4BXW3E.js";
 import {
   ANIMATION_MODULE_TYPE,
   APP_ID,
   ApplicationRef,
-  BehaviorSubject,
   CSP_NONCE,
   ChangeDetectionStrategy,
   Component,
@@ -25,41 +24,44 @@ import {
   Input,
   NgModule,
   NgZone,
-  Observable,
   Output,
   QueryList,
   RendererFactory2,
-  Subject,
-  Subscription,
   ViewEncapsulation,
   afterNextRender,
   booleanAttribute,
-  combineLatest,
-  concat,
   createComponent,
-  debounceTime,
-  distinctUntilChanged,
   effect,
-  filter,
   inject,
-  isObservable,
   isSignal,
-  map,
-  of,
   setClassMetadata,
   signal,
-  skip,
-  startWith,
-  take,
-  takeUntil,
-  tap,
   ɵɵNgOnChangesFeature,
   ɵɵdefineComponent,
   ɵɵdefineDirective,
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule
-} from "./chunk-XQL4DXQV.js";
+} from "./chunk-MX3XH5FC.js";
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  Subscription,
+  combineLatest,
+  concat,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  isObservable,
+  map,
+  of,
+  skip,
+  startWith,
+  take,
+  takeUntil,
+  tap
+} from "./chunk-RSS3ODKE.js";
 import {
   __spreadValues
 } from "./chunk-6IZCAD6B.js";
@@ -3140,19 +3142,6 @@ var PlatformModule = class _PlatformModule {
   }], null, null);
 })();
 
-// node_modules/@angular/cdk/fesm2022/css-pixel-value.mjs
-function coerceCssPixelValue(value) {
-  if (value == null) {
-    return "";
-  }
-  return typeof value === "string" ? value : `${value}px`;
-}
-
-// node_modules/@angular/cdk/fesm2022/coercion.mjs
-function coerceBooleanProperty(value) {
-  return value != null && `${value}` !== "false";
-}
-
 // node_modules/@angular/cdk/fesm2022/layout.mjs
 var LayoutModule = class _LayoutModule {
   static ɵfac = function LayoutModule_Factory(__ngFactoryType__) {
@@ -3182,6 +3171,19 @@ function _getAnimationsState() {
 }
 function _animationsDisabled() {
   return _getAnimationsState() !== "enabled";
+}
+
+// node_modules/@angular/cdk/fesm2022/css-pixel-value.mjs
+function coerceCssPixelValue(value) {
+  if (value == null) {
+    return "";
+  }
+  return typeof value === "string" ? value : `${value}px`;
+}
+
+// node_modules/@angular/cdk/fesm2022/coercion.mjs
+function coerceBooleanProperty(value) {
+  return value != null && `${value}` !== "false";
 }
 
 // node_modules/@angular/material/fesm2022/common-module.mjs
@@ -3240,9 +3242,9 @@ export {
   addAriaReferencedId,
   removeAriaReferencedId,
   _isTestEnvironment,
+  _animationsDisabled,
   coerceCssPixelValue,
   coerceBooleanProperty,
-  _animationsDisabled,
   MatCommonModule
 };
-//# sourceMappingURL=chunk-7KBWUBTI.js.map
+//# sourceMappingURL=chunk-HX7NY2FK.js.map
