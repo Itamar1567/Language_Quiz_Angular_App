@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ChallengeService } from '../challenge.service';
@@ -7,6 +7,7 @@ import { PopupComponent } from '../popup.component/popup.component';
 import { MCQuestionsComponent } from '../mcquestions.component/mcquestions.component';
 
 @Component({
+  standalone: true,
   selector: 'app-history',
   imports: [MatButtonModule, CommonModule, MCQuestionsComponent, PopupComponent],
   template: `
