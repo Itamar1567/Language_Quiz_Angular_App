@@ -10,27 +10,41 @@ export class ChallengeService {
 
   backendURL: string = 'http://localhost:5154/api/';
 
-  async getUserQuota(): Promise<QuotaResponseInterface | null> {
+  getSession() {
     try {
       const session = this.clerkClient.getClerk().session;
       if (!session) {
         console.log('No active session');
         return null;
       } else {
-        const token = await session.getToken();
+        return session;
+      }
+    } catch (err) {
+      console.log('Failed to retieve clerk session: ', err);
+      return null;
+    }
+  }
+  async getUserQuota(): Promise<QuotaResponseInterface | null> {
+    try {
+      {
+        var session = this.getSession();
+        if (session == null) {
+          return null;
+        } else {
+          const token = await session.getToken();
+          var response = await fetch(`${this.backendURL}challenge/user-quota`, {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
 
-        var response = await fetch(`${this.backendURL}challenge/user-quota`, {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+          const data: QuotaResponseInterface = await response.json();
 
-        const data: QuotaResponseInterface = await response.json();
-
-        console.log('Quota Remaining: ' + data.quotaRemaining);
-        console.log('Countdown Remaining: ' + data.resetCountDown);
-        return data;
+          console.log('Quota Remaining: ' + data.quotaRemaining);
+          console.log('Countdown Remaining: ' + data.resetCountDown);
+          return data;
+        }
       }
     } catch (err) {
       console.log('Failed to fetch user quota, Error: ', err);
@@ -42,9 +56,8 @@ export class ChallengeService {
     language: string
   ): Promise<ChallengeInterface | null> {
     try {
-      const session = this.clerkClient.getClerk().session;
-      if (!session) {
-        console.log('No active session');
+      var session = this.getSession();
+      if (session == null) {
         return null;
       } else {
         const token = await session.getToken();
@@ -69,9 +82,8 @@ export class ChallengeService {
 
   async getAllUserChallenges(): Promise<ChallengeInterface[] | null> {
     try {
-      const session = this.clerkClient.getClerk().session;
-      if (!session) {
-        console.log('No active session');
+      var session = this.getSession();
+      if (session == null) {
         return null;
       } else {
         const token = await session.getToken();
@@ -94,13 +106,11 @@ export class ChallengeService {
   }
   async resetUserChallenges(): Promise<ChallengeInterface[] | null> {
     try {
-      const session = this.clerkClient.getClerk().session;
-
-      if (!session) {
-        console.log('No active session');
-        return null;
-      } else {
-        const token = await session.getToken();
+      var session = this.getSession();
+        if (session == null) {
+          return null;
+        } else {
+          const token = await session.getToken();
         var response = await fetch(`${this.backendURL}challenge/reset-challenges`, {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
