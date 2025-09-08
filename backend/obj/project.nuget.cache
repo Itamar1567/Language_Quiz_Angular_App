@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kD6S3IkI1xY=",
+  "dgSpecHash": "OjrSZKeB2IQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\itama\\Desktop\\Language_Questionaire_App\\backend\\backend.csproj",
   "expectedPackageFiles": [
@@ -43,7 +43,9 @@
     "C:\\Users\\itama\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.0.1\\microsoft.identitymodel.tokens.8.0.1.nupkg.sha512",
     "C:\\Users\\itama\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
     "C:\\Users\\itama\\.nuget\\packages\\mono.texttemplating\\3.0.0\\mono.texttemplating.3.0.0.nupkg.sha512",
+    "C:\\Users\\itama\\.nuget\\packages\\mysqlconnector\\2.4.0\\mysqlconnector.2.4.0.nupkg.sha512",
     "C:\\Users\\itama\\.nuget\\packages\\openai\\2.3.0\\openai.2.3.0.nupkg.sha512",
+    "C:\\Users\\itama\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\9.0.0\\pomelo.entityframeworkcore.mysql.9.0.0.nupkg.sha512",
     "C:\\Users\\itama\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\itama\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
     "C:\\Users\\itama\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.10\\sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",

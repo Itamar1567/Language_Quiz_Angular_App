@@ -33,6 +33,12 @@ public class ChallengeController : ControllerBase
         _db = db;
     }
 
+    [HttpGet("testhello")]
+    public IActionResult Get()
+    {
+        return Ok(new { message = "Backend is working!" });
+    }
+    
     [HttpGet("test")]
     public IActionResult TestFunction()
     {

@@ -6,7 +6,12 @@ var corsPolicy = "_myPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+    )
+);
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
     options =>
@@ -39,7 +44,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(corsPolicy, corsPolicy =>
     {
-        corsPolicy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+        corsPolicy.WithOrigins("https://languagequizapp.netlify.app").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
     });
 });
 

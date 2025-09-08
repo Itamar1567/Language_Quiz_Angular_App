@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
 
 public class Challenge
@@ -37,6 +38,28 @@ public class AppDbContext : DbContext
     public DbSet<Challenge> Challenges { get; set; }
     public DbSet<ChallengeQuota> ChallengeQuotas { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite("Data Source=database.db");
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+      : base(options)
+    {
+    }
+
+    /*
+        public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
+        {
+
+            readonly string connectionString = "String";
+
+            public AppDbContext CreateDbContext(string[] args)
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+
+                optionsBuilder.UseMySql(
+                    connectionString,
+                    ServerVersion.AutoDetect(connectionString)
+                );
+
+                return new AppDbContext(optionsBuilder.Options);
+            }
+        }
+        */
 }

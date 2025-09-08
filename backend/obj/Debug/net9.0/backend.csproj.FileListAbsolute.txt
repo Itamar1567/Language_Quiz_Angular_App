@@ -164,3 +164,5 @@ C:\Users\itama\Desktop\Language_Questionaire_App\backend\bin\Debug\net9.0\Micros
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\obj\Debug\net9.0\backend.sourcelink.json
+C:\Users\itama\Desktop\Language_Questionaire_App\backend\bin\Debug\net9.0\MySqlConnector.dll
+C:\Users\itama\Desktop\Language_Questionaire_App\backend\bin\Debug\net9.0\Pomelo.EntityFrameworkCore.MySql.dll
