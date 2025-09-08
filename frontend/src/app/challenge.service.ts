@@ -8,7 +8,7 @@ import { ChallengeInterface } from './challenge.interface';
 export class ChallengeService {
   clerkClient: AuthService = inject(AuthService);
 
-  backendURL: string = 'https//:lang-quiz-be-ecc6dbawgxf4gea0.canadacentral-01.azurewebsites.net/api/';
+  backendURL: string = 'https://lang-quiz-be-ecc6dbawgxf4gea0.canadacentral-01.azurewebsites.net/api/';
 
   async getSession() {
     try {
