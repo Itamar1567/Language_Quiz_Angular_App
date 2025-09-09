@@ -11,7 +11,6 @@ import { MCQuestionsComponent } from '../mcquestions.component/mcquestions.compo
   selector: 'app-history',
   imports: [MatButtonModule, CommonModule, MCQuestionsComponent, PopupComponent],
   template: `
-    @if(isPopup) { <app-popup message="Would you like to reset history" (popupChange)="handlePopUpChange($event)" />}
     <div class="main-container">
       <div class="history-container">
         <div class="history-header">
@@ -28,6 +27,11 @@ import { MCQuestionsComponent } from '../mcquestions.component/mcquestions.compo
         </ul>
       </div>
     </div>
+    @if(isPopup) {
+    <app-popup
+      message="Would you like to reset history"
+      (popupChange)="handlePopUpChange($event)"
+    />}
   `,
   styleUrl: './history.component.css',
 })

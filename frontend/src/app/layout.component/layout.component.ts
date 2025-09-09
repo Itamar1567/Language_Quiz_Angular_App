@@ -11,9 +11,26 @@ import { Router } from '@angular/router';
     <section class="layout-container">
       <ul class="layout-links">
         <li><img src="images/language_app_logo.png" alt="logo" id="logo" /></li>
-        <li><button mat-raised-button color="primary" extended (click)="moveToHome()">Home</button></li>
-        <li><button mat-raised-button="elevated" (click)="moveToHistory()">History</button></li>
-        <li #userButtonContainer></li>
+        <li id="hamburger-menu">
+          <nav id="hamburger-nav">
+            <img
+              [class]="HamburgerIconClicked"
+              src="images/hamburger-menu.png"
+              alt="hamburger menu"
+              (click)="toggleMenu()"
+            />
+            <div [className]="hamburgerLinksClass">
+              <li><a (click)="moveToHome()">Home</a></li>
+              <li><a (click)="moveToHistory()">History</a></li>
+              <li #userButtonContainerHamburger id="user-button-hamburger"></li>
+            </div>
+          </nav>
+        </li>
+        <li id="link-button">
+          <button mat-raised-button color="primary" extended (click)="moveToHome()">Home</button>
+        </li>
+        <li id="link-button"><button mat-raised-button="elevated" (click)="moveToHistory()">History</button></li>
+        <li id="link-button" #userButtonContainer></li>
       </ul>
     </section>
     <div class="copyright">
@@ -26,30 +43,51 @@ import { Router } from '@angular/router';
 export class LayoutComponent {
   @ViewChild('userButtonContainer', { static: true })
   userButtonContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild('userButtonContainerHamburger', { static: true })
+  userButtonContainerHamburger!: ElementRef<HTMLDivElement>;
 
   private authService: AuthService = inject(AuthService);
   private router: Router = inject(Router);
 
-  moveToHome()
-  {
-    this.router.navigate(["/home"]);
+  HamburgerIconClicked: string = "/images/hamburger-menu.png"
+  hamburgerToggle: boolean = false;
+  hamburgerLinksClass: string = 'menu-links-invis';
+
+  toggleMenu() {
+    this.hamburgerToggle = !this.hamburgerToggle;
+    if (this.hamburgerToggle == true) {
+      this.hamburgerLinksClass = 'menu-links-invis';
+      this.HamburgerIconClicked = 'hamburger-icon'
+      
+    } else {
+      this.hamburgerLinksClass = 'menu-links';
+      this.HamburgerIconClicked = 'hamburger-icon-clicked'
+    }
   }
-  moveToHistory()
-  {
-    this.router.navigate(["/history"]);
+
+  moveToHome() {
+    this.router.navigate(['/home']);
   }
+  moveToHistory() {
+    this.router.navigate(['/history']);
+  }
+
+  async setSignInButton() {
+    this.userButtonContainer.nativeElement.innerHTML = '';
+
+    var clerkService = await this.authService.getClerk();
+
+    clerkService.mountUserButton(this.userButtonContainer.nativeElement);
+    clerkService.mountUserButton(this.userButtonContainerHamburger.nativeElement);
+  }
+
   async ngOnInit() {
-
     if (this.authService.signedInSignalValue() == true) {
-
-      this.router.navigate(["/home"])
+      this.router.navigate(['/home']);
 
       this.authService.setSignedInSignal(true);
 
-      this.userButtonContainer.nativeElement.innerHTML = '';
-
-      var clerkService = await this.authService.getClerk();
-      clerkService.mountUserButton(this.userButtonContainer.nativeElement);
+      this.setSignInButton();
     }
   }
 }
