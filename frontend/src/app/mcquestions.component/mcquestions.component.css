@@ -9,11 +9,11 @@
 #title{
     font-size: 1.1rem;
     font-weight: 500;
-    margin: 1rem 0;
+
     color: var(--text-color);
 }
 .questions-container{
-    margin: 0 35px;
+    margin: 0 3%;
     padding: 15px 0;
 }
 .mcq-main{
@@ -70,3 +70,13 @@
     background-color: #ff9e9e;
     border: 2px solid rgb(219, 3, 3);
 }
+
+@media screen and (max-width: 350px) {
+  .stats-list{
+    margin: 0%;
+    padding: 0%;
+    display: block;
+    gap: 50px;
+}
+}
+
