@@ -16,4 +16,5 @@
 - 🔁 Question history tracking and reset option
 - 🧪 Database containing question information
 
-##To try out: https://languagequizapp.netlify.app/home
+## To try out
+Use link: https://languagequizapp.netlify.app/home
