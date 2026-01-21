@@ -1,13 +1,6 @@
 using System.ClientModel;
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.OpenApi.Any;
-using OpenAI;
 using OpenAI.Chat;
-using OpenAI.Models;
 
 public class AIGenerateChallenge
 {
