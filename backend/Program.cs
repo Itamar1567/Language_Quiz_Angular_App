@@ -38,7 +38,7 @@ builder.Services.AddScoped<DatabaseRepository>();
 builder.Services.AddScoped<AIGenerateChallenge>();
 
 var apiKey = builder.Configuration["OPENAI_KEY"];
-
+Console.WriteLine(apiKey);
 
 builder.Services.AddCors(options =>
 {

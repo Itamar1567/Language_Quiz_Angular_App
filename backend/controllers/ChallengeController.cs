@@ -54,7 +54,6 @@ public class ChallengeController : ControllerBase
     {
         var user_id = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
-        Console.WriteLine("Hello World: " + user_id);
         if (string.IsNullOrEmpty(user_id))
         {
             return Unauthorized("Could not find user ID, to fetch quota, location: user-quota");
