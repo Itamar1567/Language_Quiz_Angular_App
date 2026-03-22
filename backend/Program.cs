@@ -44,7 +44,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(corsPolicy, corsPolicy =>
     {
-        corsPolicy.WithOrigins("https://languagequizapp.netlify.app").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+        corsPolicy.WithOrigins("https://languagequizapp.netlify.app", "http://localhost:4200").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
     });
 });
 

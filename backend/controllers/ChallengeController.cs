@@ -1,7 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Tracing;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 public class ChallengeRequest
 {
@@ -56,6 +54,7 @@ public class ChallengeController : ControllerBase
     {
         var user_id = User.Claims.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
+        Console.WriteLine("Hello World: " + user_id);
         if (string.IsNullOrEmpty(user_id))
         {
             return Unauthorized("Could not find user ID, to fetch quota, location: user-quota");
@@ -65,9 +64,6 @@ public class ChallengeController : ControllerBase
             TimeSpan resetPeriod = TimeSpan.FromHours(24);
 
             var userQuota = _db.GetUserQuota(user_id);
-
-            //TimeSpan elapsed = now - userQuota.LastResetDate;
-            //TimeSpan remaining = resetPeriod - elapsed;
 
             var remaining = userQuota.LastResetDate.Add(resetPeriod);
 

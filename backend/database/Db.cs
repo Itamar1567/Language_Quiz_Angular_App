@@ -25,13 +25,13 @@ public class DatabaseRepository
 
         };
 
-        var quotaExists = _dbContext.ChallengeQuotas.FirstOrDefault(q => q.UserId == Id);
+        var quotaExists = _dbContext.ChallengeQuota.FirstOrDefault(q => q.UserId == Id);
 
         if (quotaExists != null) return quotaExists;
         
         else
         {
-            _dbContext.ChallengeQuotas.Add(newQuota);
+            _dbContext.ChallengeQuota.Add(newQuota);
             _dbContext.SaveChanges();
             return newQuota;
         }
@@ -46,7 +46,6 @@ public class DatabaseRepository
 
         if (q == null)
         {
-            //for fallback
             CreateQuota(Id);
         }
         else if (now - q.LastResetDate >= TimeSpan.FromHours(24))
@@ -62,7 +61,7 @@ public class DatabaseRepository
     public int AddOrRemoveQuota(int num, string Id)
     {
 
-        var quota = _dbContext.ChallengeQuotas.FirstOrDefault(q => q.UserId == Id);
+        var quota = _dbContext.ChallengeQuota.FirstOrDefault(q => q.UserId == Id);
 
         if (quota == null)
         {
@@ -81,7 +80,7 @@ public class DatabaseRepository
 
     public ChallengeQuota GetUserQuota(string Id)
     {
-        var quota = _dbContext.ChallengeQuotas.FirstOrDefault(q => q.UserId == Id);
+        var quota = _dbContext.ChallengeQuota.FirstOrDefault(q => q.UserId == Id);
         if (quota == null)
         {
             quota = CreateQuota(Id);
@@ -121,7 +120,7 @@ public class DatabaseRepository
     }
     public int GetRemainingQuota(string Id)
     {
-        var quota = _dbContext.ChallengeQuotas.Where(q => q.UserId == Id).Select(q => q.QuotaRemaining).FirstOrDefault();
+        var quota = _dbContext.ChallengeQuota.Where(q => q.UserId == Id).Select(q => q.QuotaRemaining).FirstOrDefault();
         return quota;
 
 

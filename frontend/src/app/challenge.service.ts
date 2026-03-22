@@ -2,13 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { QuotaResponseInterface } from './quota-response.interface';
 import { ChallengeInterface } from './challenge.interface';
+import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class ChallengeService {
   clerkClient: AuthService = inject(AuthService);
 
-  backendURL: string = 'https://lang-quiz-be-ecc6dbawgxf4gea0.canadacentral-01.azurewebsites.net/api/';
+  backendURL: string = environment.BACKEND_URL;
 
   async getSession() {
     try {

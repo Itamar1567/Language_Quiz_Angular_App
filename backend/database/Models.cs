@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore;
 
 public class Challenge
@@ -36,7 +35,7 @@ public class ChallengeQuota
 public class AppDbContext : DbContext
 {
     public DbSet<Challenge> Challenges { get; set; }
-    public DbSet<ChallengeQuota> ChallengeQuotas { get; set; }
+    public DbSet<ChallengeQuota> ChallengeQuota { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options)
       : base(options)
