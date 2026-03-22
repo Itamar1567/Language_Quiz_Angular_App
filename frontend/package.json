@@ -2,9 +2,8 @@
   "name": "frontend",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "node --no-warnings ./node_modules/@angular/cli/bin/ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -30,7 +29,6 @@
     "@angular/material": "^20.2.1",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
-    "@angular/cli": "^20.1.6",
     "@clerk/clerk-js": "^5.91.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
