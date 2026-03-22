@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250908015739_createInitial")]
-    partial class createInitial
+    [Migration("20260322195542_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,7 +87,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ChallengeQuotas");
+                    b.ToTable("ChallengeQuota");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\backend.exe
+C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\publish\web.config
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\web.config
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\appsettings.Development.json
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\appsettings.json
@@ -7,6 +8,11 @@ C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\appsett
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\backend.deps.json
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\backend.runtimeconfig.json
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\backend.staticwebassets.endpoints.json
+C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\publish\appsettings.Development.json
+C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\publish\appsettings.json
+C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\publish\backend.deps.json
+C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\publish\backend.runtimeconfig.json
+C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\publish\publish\backend.staticwebassets.endpoints.json
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\backend.dll
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\backend.runtimeconfig.json
 C:\Users\itama\Desktop\Language_Questionaire_App\backend\publish\backend.pdb

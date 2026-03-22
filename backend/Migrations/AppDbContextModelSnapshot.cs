@@ -84,7 +84,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ChallengeQuotas");
+                    b.ToTable("ChallengeQuota");
                 });
 #pragma warning restore 612, 618
         }
